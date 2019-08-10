@@ -1,0 +1,40 @@
+{# 继承base基类模版 #}
+{% extends 'base/base.html' %}
+
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'css/course/course.css' %}">
+{% endblock %}
+
+{% block title %}
+  在线课堂页
+{% endblock %}
+
+<!-- main-contain start  -->
+{% block main_start %}
+  <main id="course-container">
+    <div class="w1200">
+      <ul class="course-list">
+        {% for course in courses %}
+          <li class="course-item">
+            <a href="{% url 'course:course_detail' course.id %}">
+              <img class="course-img" src="{{ course.cover_url }}"
+                   alt="python">
+              <div class="course-content">
+                <p class="course-info">{{ course.title }}</p>
+                <p class="course-author">{{ course.teacher.positional_title }}</p>
+                <p class="course-price free">免费</p>
+              </div>
+            </a>
+          </li>
+        {% endfor %}
+
+      </ul>
+    </div>
+  </main>
+{% endblock %}
+<!-- main-contain  end -->
+
+{% block script %}
+  <script src="{% static 'js/news/index.js' %}"></script>
+{% endblock %}
